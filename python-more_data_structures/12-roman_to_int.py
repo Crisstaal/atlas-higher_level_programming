@@ -6,12 +6,12 @@ if romans = {'I': 1, 'V': 5, 'X': 10, 'L':50, 'C': 100, 'D': 500, 'M': 1000,\
         number = 0
         for i in range(len(roman_string)):
             for b in romans.keys():
-                if roman_string[:] is b:
+                if roman_string == b:
                     number = romans[b]
                     return number
-                if roman_string[i:i+1] is b:
+                if roman_string[i:i+1] == b:
                     number += romans[b]
                     break
         return number
     else:
-    return 0
+        return 0
