@@ -1,7 +1,11 @@
 #!/usr/bin/python3
-""" module defines a base geometry class BaseGeometry."""
-
+"""
+    6-base_geometry: class BaseGeometry
+"""
 class BaseGeometry:
-
+    """
+        Methods:
+            area() - raises an Exception
+    """
     def area(self):
-        raise Exception("area() is not implemented yet")
+        raise Exception("area() is not implemented")
