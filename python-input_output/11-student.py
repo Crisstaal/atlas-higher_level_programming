@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Module that defines the class Student
-"""
+""" Module that defines the class Student"""
 
 
 class Student:
@@ -13,7 +12,7 @@ class Student:
         self.age = age
 
     def to_json(self, attrs=None):
-        """ Method that returns directory description """
+        """ returns directory description """
         obj = self.__dict__.copy()
         if type(attrs) is list:
 
@@ -30,3 +29,8 @@ class Student:
             return d_list
 
         return obj
+
+    def reload_from_json(self, json):
+        """ Replaces all attributes of the Student instance """
+        for atr in json:
+            self.__dict__[atr] = json[atr]
