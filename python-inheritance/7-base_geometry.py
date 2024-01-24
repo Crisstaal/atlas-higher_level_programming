@@ -5,12 +5,15 @@
 
 
 class BaseGeometry:
-    def area(self):
+      def area(self):
+        """
+            Area raise an exception.
+        """
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
         """
-            checks the value of value.
+            integer_validator checks the value of value.
             Args:
                 name (str): name
                 value (int): value
