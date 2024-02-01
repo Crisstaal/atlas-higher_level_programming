@@ -7,7 +7,7 @@ import turtle
 
 
 class Base:
-    """Represents the base class for all other classes in project.
+    """Represents the base class
 
     Attributes:
         __nb_objects (int): The number of bases.
@@ -36,7 +36,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """Write the JSON strin representation of a list of objects to a file."""
+        """the JSON strin representation of a list of objects to a file."""
         filename = cls.__name__ + ".json"
         with open(filename, "w") as jsonfile:
             if list_objs is None:
@@ -91,18 +91,12 @@ class Base:
                     writer.writerow(obj.to_dictionary())
 
     @classmethod
-    def load_from_file_csv(cls):
-        """Return a list of classes"""
-        filename = cls.__name__ + ".csv"
+    def load_from_file(cls):
+        """Return:If the file does not exist - an empty list."""
+        filename = str(cls.__name__) + ".json"
         try:
-            with open(filename, "r", newline="") as csvfile:
-                if cls.__name__ == "Rectangle":
-                    fieldnames = ["id", "width", "height", "x", "y"]
-                else:
-                    fieldnames = ["id", "size", "x", "y"]
-                list_dicts = csv.DictReader(csvfile, fieldnames=fieldnames)
-                list_dicts = [dict([k, int(v)] for k, v in d.items())
-                              for d in list_dicts]
+            with open(filename, "r") as jsonfile:
+                list_dicts = Base.from_json_string(jsonfile.read())
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []

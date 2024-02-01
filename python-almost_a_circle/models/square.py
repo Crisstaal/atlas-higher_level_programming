@@ -11,7 +11,7 @@ class Square(Rectangle):
     """
     def __init__(self, size, x=0, y=0, id=None):
         """
-            initializes Square (overrides Rectangle init)
+            initialize square
         """
         super().__init__(size, size, x, y, id)
 
@@ -48,19 +48,19 @@ class Square(Rectangle):
         except IndexError:
             pass
 
-    def __str__(self):
-        """
-            Overloading str function
-        """
-        return "[{}] ({}) {}/{} - {}".format(type(self).__name__,
-                                             self.id, self.x, self.y,
-                                             self.width)
-
     def to_dictionary(self):
         """
-            Returns the dictionary representation of a Square
+            Return the dictionary representation of a Square
         """
-        return {'id': getattr(self, "id"),
-                'size': getattr(self, "width"),
-                'x': getattr(self, "x"),
-                'y': getattr(self, "y")}
+        return {
+            "id": self.id,
+            "size": self.width,
+            "x": seld.x,
+            "y": self.y 
+        }     
+     def __str__(self):
+        """
+        Retrunn print representation
+        """
+        return "[Square] ({}) ({}) {}/{} - {}".format(self.id, self.x, self.y,
+                                             self.width)
