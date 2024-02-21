@@ -1,5 +1,5 @@
--- list_tables.sql
+--  lists all the tables of a database in your MySQL server
 
-USE your_database_name; -- Replace 'my sql' with the actual database name
+USE your_database_name;
 
 SHOW TABLES;
