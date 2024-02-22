@@ -1,33 +1,21 @@
 #!/usr/bin/python3
+import sys
 import MySQLdb
-from sys import argv
 
-if __name__ == "__main__":
-    # Check if all 3 arguments are provided
-    if len(argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(argv[0]))
-        exit(1)
-
-    # Extract MySQL credentials from command line arguments
-    username, password, database = argv[1], argv[2], argv[3]
-
-    # Connect to the MySQL server
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
+if __name__ == '__main__':
+    db = MySQLdb.connect(user=sys.argv[1],
+                         passwd=sys.argv[2],
+                         db=sys.argv[3],
+                         host='localhost',
+                         port=3306)
 
     cursor = db.cursor()
+    cursor.execute("SELECT * FROM states ORDER BY id ASC")
+    data = cursor.fetchall()
 
-    query = "SELECT * FROM states ORDER BY states.id ASC"
-    cursor.execute(query)
+    for row in data:
+        print(row)
 
-    states = cursor.fetchall()
-
-    for state in states:
-        print(state)
-
+    cursor.close()
+    db.close()
     
