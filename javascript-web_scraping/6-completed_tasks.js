@@ -2,6 +2,7 @@
 
 const request = require('request');
 const apiUrl = process.argv[2];
+
 request(apiUrl, function (error, response, body) {
     if (!error && response.statusCode === 200) {
         try {
@@ -16,8 +17,17 @@ request(apiUrl, function (error, response, body) {
                     }
                 }
             });
-            const output = `{${Object.entries(completed).map(([key, value]) => ` '${key}': ${value}`).join(',\n ')} }`;
-            console.log(Object.keys(completed).length > 2 ? output : completed);
+
+            const completedTasks = Object.keys(completed).length;
+            if (completedTasks > 0) {
+                console.log("Users with completed tasks:");
+                for (const userId in completed) {
+                    console.log(`User ID: ${userId}, Completed Tasks: ${completed[userId]}`);
+                }
+            } else {
+                console.log("No users with completed tasks found.");
+            }
+
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
         }
