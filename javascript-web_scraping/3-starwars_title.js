@@ -5,10 +5,10 @@ const movieId = process.argv[2];
 const url = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
 request(url, function (error, response, body) {
-    if (error) {
-        console.error(error);
-    } else {
-        const movieData = JSON.parse(body);
-        console.log(movieData.title);
-    }
+  if (error) {
+    console.error(error);
+  } else {
+    const movieData = JSON.parse(body);
+    console.log(movieData.title);
+  }
 });
