@@ -20,12 +20,15 @@ request(apiUrl, function (error, response, body) {
 
             const completedTasks = Object.keys(completed).length;
             if (completedTasks > 0) {
-                console.log("Users with completed tasks:");
+                let output = '{';
                 for (const userId in completed) {
-                    console.log(`User ID: ${userId}, Completed Tasks: ${completed[userId]}`);
+                    output += ` '${userId}': ${completed[userId]},`;
                 }
+                output = output.slice(0, -1); // Remove the last comma
+                output += ' }';
+                console.log(output);
             } else {
-                console.log("No users with completed tasks found.");
+                console.log("{ }");
             }
 
         } catch (parseError) {
