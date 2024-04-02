@@ -20,13 +20,9 @@ request(apiUrl, function (error, response, body) {
 
             const completedTasks = Object.keys(completed).length;
             if (completedTasks > 0) {
-                let output = '{';
                 for (const userId in completed) {
-                    output += ` '${userId}': ${completed[userId]},`;
+                    console.log(`'${userId}': ${completed[userId]},`);
                 }
-                output = output.slice(0, -1); // Remove the last comma
-                output += ' }';
-                console.log(output);
             } else {
                 console.log("{ }");
             }
